@@ -7,18 +7,23 @@ cask "mynik" do
   desc "Dashboard pessoal: finanças, contas a pagar, loja, projetos e notas"
   homepage "https://github.com/Domyniik/mynik"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "Mynik.app"
 
-  # A app ainda não é notarizada pela Apple: retira a quarentena para abrir sem bloqueio.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Mynik.app"],
-                   sudo: false
+  # A app não é notarizada pela Apple: retira a quarentena para abrir sem bloqueio.
+  postflight_steps do
+    if_path_exists "{{appdir}}/Mynik.app" do
+      run "/usr/bin/xattr",
+          args: ["-dr", "com.apple.quarantine", "{{appdir}}/Mynik.app"]
+    end
   end
+
+  uninstall quit: "com.domynik.mynik"
 
   zap trash: [
     "~/Library/Containers/com.domynik.mynik",
+    "~/Library/Containers/com.domynik.mynik.widgets",
+    "~/Library/Group Containers/CJ7Y2P3TKF.com.domynik.mynik",
   ]
 end
