@@ -1,6 +1,6 @@
 cask "mynik" do
-  version "1.1.0"
-  sha256 "72edb0e9540e367bbae98dd0651a85cb7d6798c442876ad5ef75a2f264219034"
+  version "1.3.0"
+  sha256 "bab216ab262ad4bf84e1e1498be5c44a0b723b0a97f2ffc86b1fc7871876d1bc"
 
   url "https://github.com/Domyniik/mynik/releases/download/v#{version}/Mynik-#{version}.zip"
   name "Mynik"
