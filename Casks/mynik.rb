@@ -10,7 +10,7 @@ cask "mynik" do
   desc "Dashboard pessoal: finanças, contas a pagar, loja, projetos e notas"
   homepage "https://github.com/Domyniik/mynik"
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   app "Mynik.app"
 
