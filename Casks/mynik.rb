@@ -1,13 +1,16 @@
 cask "mynik" do
-  version "1.4.0"
-  sha256 "bfb92350b2822da5993d3f02bba50da3134a74d8958026aee1583f5de792367a"
+  arch arm: "aarch64", intel: "x64"
 
-  url "https://github.com/Domyniik/mynik/releases/download/v#{version}/Mynik-#{version}.zip"
+  version "2.0.0"
+  sha256 arm:   "4d11492485ece07ae9372a190c435b5f8337bbd5db2b5e29d0c2128d0867dcfc",
+         intel: "715d33e6c85c71f2a4632d08d4a8a31bb1412bc681b22407c2c079713b0a7dce"
+
+  url "https://github.com/Domyniik/mynik/releases/download/v#{version}/Mynik_#{version}_#{arch}.dmg"
   name "Mynik"
   desc "Dashboard pessoal: finanças, contas a pagar, loja, projetos e notas"
   homepage "https://github.com/Domyniik/mynik"
 
-  depends_on macos: :tahoe
+  depends_on macos: ">= :big_sur"
 
   app "Mynik.app"
 
@@ -19,11 +22,11 @@ cask "mynik" do
     end
   end
 
-  uninstall quit: "com.domynik.mynik"
+  uninstall quit: "com.domynik.mynik.desktop"
 
   zap trash: [
-    "~/Library/Containers/com.domynik.mynik",
-    "~/Library/Containers/com.domynik.mynik.widgets",
-    "~/Library/Group Containers/CJ7Y2P3TKF.com.domynik.mynik",
+    "~/Library/Application Support/com.domynik.mynik.desktop",
+    "~/Library/Caches/com.domynik.mynik.desktop",
+    "~/Library/WebKit/com.domynik.mynik.desktop",
   ]
 end
